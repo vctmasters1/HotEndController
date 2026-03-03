@@ -46,7 +46,7 @@ The slicer start g-code must set temps for **both** heaters.
 ├── MyMod-03012026/                 ← active Klipper config modules
 │   ├── esp32_temp_display.py          Klipper extra (→ ~/klipper/klippy/extras/)
 │   ├── ESP-PT1000-2.cfg              [esp32_temp_display] + convenience macros
-│   ├── Qidi-Max3-MyMod-EBB-RP-main.cfg   main config (includes ESP-PT1000-2.cfg)
+│   ├── Qidi-Max3-MyMod-EBB-RP-double.cfg  main config (includes ESP-PT1000-2.cfg)
 │   ├── Qidi-max3-macros.cfg          PRINT_END calls HOTEND2_OFF
 │   └── …                             (kinematics, fans, heaters, sensors, etc.)
 │
@@ -75,7 +75,7 @@ The slicer start g-code must set temps for **both** heaters.
 | File                    | Destination                        |
 |-------------------------|------------------------------------|
 | `esp32_temp_display.py` | `~/klipper/klippy/extras/`         |
-| `ESP-PT1000-2.cfg`      | included via `Qidi-Max3-MyMod-EBB-RP-main.cfg` |
+| `ESP-PT1000-2.cfg`      | included via `Qidi-Max3-MyMod-EBB-RP-double.cfg` |
 
 ### I2C bus
 Routed through the EBBCan toolhead MCU:

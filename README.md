@@ -22,6 +22,8 @@ See [ESP32C3wOLED/pinout.md](ESP32C3wOLED/pinout.md) for full wiring diagrams.
 ├── printer.cfg                     Entry point — select Factory, Stock, or MyMod
 ├── Factory/                        Original Qidi Max3 configs (REFERENCE ONLY)
 ├── MyMod-03012026/                 Modular Klipper config for EBB2209 toolhead
+│   ├── Qidi-Max3-MyMod-EBB-RP-double.cfg  Dual heater (EBB2209 + ESP32 hotend2)
+│   ├── Qidi-Max3-MyMod-EBB-RP-single.cfg  Single heater (EBB2209 only)
 │   ├── esp32_temp_display.py       Klipper extra — bidirectional I2C with ESP32
 │   ├── ESP-PT1000-2.cfg            Hotend2 config + M104/M109 macros
 │   └── …                          Kinematics, heaters, fans, sensors, macros
@@ -58,21 +60,27 @@ cp printer.cfg printer.cfg.bak       # backup original
 scp printer.cfg mks@<printer-ip>:~/klipper_config/printer.cfg
 ```
 
-The new `printer.cfg` is a selector — it includes **one** of three configurations:
+The new `printer.cfg` is a selector — it includes **one** of four configurations:
 
 | Option | Line to uncomment | Description |
 |--------|-------------------|-------------|
 | Factory | `[include Factory/printer.cfg]` | Original monolithic Qidi config |
-| MyMod | `[include MyMod-03012026/Qidi-Max3-MyMod-EBB-RP-main.cfg]` | EBB2209 CAN toolhead + ESP32 hotend2 |
+| MyMod (dual) | `[include MyMod-03012026/Qidi-Max3-MyMod-EBB-RP-double.cfg]` | EBB2209 CAN toolhead + ESP32 hotend2 |
+| MyMod (single) | `[include MyMod-03012026/Qidi-Max3-MyMod-EBB-RP-single.cfg]` | EBB2209 CAN toolhead only — no ESP32 |
 | Stock | `[include MyMod-03012026/Qidi-Max3-STOCK-main.cfg]` | Original MKS_THR toolhead (modular split) |
 
-By default, **MyMod** (EBB2209) is active. To switch, edit `printer.cfg` and uncomment the desired `[include]` line (comment out the others).
+By default, **MyMod dual** (EBB2209 + ESP32) is active. To switch, edit `printer.cfg` and uncomment the desired `[include]` line (comment out the others).
+
+The second heating element is designed to be **easy to attach and remove**.
+When it is physically connected, use MyMod (dual).  When it is removed,
+switch to MyMod (single) to avoid I2C errors.
 
 > **Note:** Factory mode is standalone — comment out the `[mcu]` and `[include Factory/Adaptive_Mesh.cfg]` shared section when using it.
 
-### 3. Install the Klipper extra
+### 3. Install the Klipper extra (dual-heater mode only)
 
-The ESP32 hotend controller needs a custom Klipper module:
+The ESP32 hotend controller needs a custom Klipper module.
+**Skip this step if using MyMod (single) or Stock mode.**
 
 ```bash
 # On the printer (via SSH)
