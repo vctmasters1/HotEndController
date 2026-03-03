@@ -100,8 +100,8 @@ static void ssd1306_send_cmds(const uint8_t *cmds, int len)
     sw_i2c_stop();
 }
 
-/* Send a single command byte. */
-static void ssd1306_cmd(uint8_t cmd)
+/* Send a single command byte (may be useful for runtime adjustments). */
+static void __attribute__((unused)) ssd1306_cmd(uint8_t cmd)
 {
     ssd1306_send_cmds(&cmd, 1);
 }

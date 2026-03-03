@@ -4,5 +4,4 @@ CONFIG_IDF_TARGET="esp32c3"
 # FreeRTOS tick rate
 CONFIG_FREERTOS_HZ=1000
 
-# Enable legacy I2C driver (needed for slave mode)
-CONFIG_I2C_ENABLE_SLAVE=y
+# Legacy I2C slave driver is always available in ESP-IDF v5.5+
