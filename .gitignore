@@ -1,0 +1,17 @@
+# ESP-IDF build artifacts
+ESP32C3wOLED/build/
+ESP32C3wOLED/sdkconfig
+ESP32C3wOLED/sdkconfig.old
+ESP32C3wOLED/managed_components/
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# IDE / editor
+.vscode/
+*.code-workspace
+
+# OS
+Thumbs.db
+.DS_Store

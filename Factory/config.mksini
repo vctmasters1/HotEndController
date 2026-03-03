@@ -1,0 +1,35 @@
+
+[fila]
+enable                         = 1
+
+
+[led]
+enable                         = 1
+
+
+[beep]
+enable                         = 1
+
+
+[target]
+extruder                       = 268
+heaterbed                      = 70
+hot                            = 45
+
+
+[babystep]
+value                          = -1.550000
+
+
+[total]
+time                           = 40330
+
+
+[oobe]
+enable                         = 0
+
+
+[mks_ethernet]
+enable                         = 0
+
+

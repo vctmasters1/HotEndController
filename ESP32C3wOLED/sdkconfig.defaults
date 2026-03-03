@@ -1,0 +1,8 @@
+# Target: ESP32-C3
+CONFIG_IDF_TARGET="esp32c3"
+
+# FreeRTOS tick rate
+CONFIG_FREERTOS_HZ=1000
+
+# Enable legacy I2C driver (needed for slave mode)
+CONFIG_I2C_ENABLE_SLAVE=y
